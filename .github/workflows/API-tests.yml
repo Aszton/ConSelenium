@@ -4,6 +4,8 @@ env:
   SECRET_PASSWORD: ${{ secrets.SECRET_GITHUB_PASS }}
 
 on:
+  schedule:
+  - cron: '15 13 * * *'
   push:
     branches: [ "main" ]
   pull_request:
@@ -26,3 +28,10 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm test
+
+    - name: Upload test report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: mochawesome-report
+        path: mochawesome-report/ 
