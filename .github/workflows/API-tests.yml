@@ -4,6 +4,8 @@ env:
   SECRET_PASSWORD: ${{ secrets.SECRET_GITHUB_PASS }}
 
 on:
+  schedule:
+  - cron: '15 13 * * *'
   push:
     branches: [ "main" ]
   pull_request:
