@@ -8,7 +8,7 @@ describe("API tests", () => {
   it("first test", async () => {
     const response = await spec().get(`${baseUrl}/BookStore/v1/Books`);
     expect(response.statusCode).to.eql(200);
-    expect(response.body.books[0].title).to.eql("Throw Error");
+    expect(response.body.books[0].title).to.eql("Throw Error")
   });
 
   it.skip("create account", async () => {
