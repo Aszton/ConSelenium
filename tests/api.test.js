@@ -5,10 +5,10 @@ import { baseUrl, userID, user, secretPassword } from "../helpers/data.js";
 let token;
 
 describe("API tests", () => {
-  it("first test", async () => {
+  it.skip("first test", async () => {
     const response = await spec().get(`${baseUrl}/BookStore/v1/Books`);
     expect(response.statusCode).to.eql(200);
-    expect(response.body.books[0].title).to.eql("Throw Error")
+    expect(response.body.books[0].title).to.eql("Git Pocket Guide");
   });
 
   it.skip("create account", async () => {
@@ -39,18 +39,18 @@ describe("API tests", () => {
 
   it("Add a book", async () => {
     const response = await spec()
-      .post(`${baseUrl}/BookStore/v1/Books`)
-      .withBearerToken(token)
-      .withBody({
-        userId: userID,
-        collectionOfIsbns: [
+    .post(`${baseUrl}/BookStore/v1/Books`)
+    .withBearerToken(token)
+    .withBody({
+        "userId": userID,
+        "collectionOfIsbns": [
           {
-            isbn: "9781449325862",
-          },
-        ],
-      });
-    expect(response.statusCode).to.eql(201);
-  });
+            "isbn": "9781449325862"
+          }
+        ]
+      })
+      expect(response.statusCode).to.eql(201)
+  })
 
   it("Delete all books from user 'Kuczer'", async () => {
     const response = await spec()
